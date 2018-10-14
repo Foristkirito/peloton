@@ -239,8 +239,11 @@ StringFunctions::Concat(executor::ExecutorContext &ctx,
   for (uint32_t i = 0; i < str_num; i++) {
     // memcpy each string to new string
     PL_MEMCPY(ptr, concat_strs[i], strs_length[i] - 1);
+    ptr += strs_length[i] - 1;
   }
   // We done
+  LOG_DEBUG("using new concat functions.");
+
   return StringFunctions::StrWithLen{new_str, total_length};
 }
 

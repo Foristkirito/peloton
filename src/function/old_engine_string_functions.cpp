@@ -97,6 +97,7 @@ type::Value OldEngineStringFunctions::Concat(
     return type::ValueFactory::GetNullValueByType(type::TypeId::VARCHAR);
   }
   std::string str = args[0].ToString() + args[1].ToString();
+  LOG_DEBUG("useing old engine concat function");
   return (type::ValueFactory::GetVarcharValue(str));
 }
 

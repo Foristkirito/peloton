@@ -967,19 +967,19 @@ void Catalog::InitializeFunctions() {
           "concat", {type::TypeId::VARCHAR, type::TypeId::VARCHAR},
           type::TypeId::VARCHAR, internal_lang, "Concat",
           function::BuiltInFuncType{OperatorId::Concat,
-                                    function::OldEngineStringFunctions::Concat},
+                                    function::StringFunctions::Concat},
           txn);
       AddBuiltinFunction(
           "upper", {type::TypeId::VARCHAR},
           type::TypeId::VARCHAR, internal_lang, "Upper",
           function::BuiltInFuncType{OperatorId::Upper,
-                                    function::OldEngineStringFunctions::Upper},
+                                    function::StringFunctions::Upper},
           txn);
       AddBuiltinFunction(
           "lower", {type::TypeId::VARCHAR},
           type::TypeId::VARCHAR, internal_lang, "Lower",
           function::BuiltInFuncType{OperatorId::Lower,
-                                    function::OldEngineStringFunctions::Lower},
+                                    function::StringFunctions::Lower},
           txn);
       AddBuiltinFunction(
           "substr",

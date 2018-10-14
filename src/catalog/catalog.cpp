@@ -29,6 +29,7 @@
 #include "function/decimal_functions.h"
 #include "function/old_engine_string_functions.h"
 #include "function/timestamp_functions.h"
+#include "function/string_functions.h"
 #include "index/index_factory.h"
 #include "storage/storage_manager.h"
 #include "storage/table_factory.h"

@@ -51,6 +51,19 @@ class StringFunctions {
   static bool Like(executor::ExecutorContext &ctx, const char *t, uint32_t tlen,
                    const char *p, uint32_t plen);
 
+  // upper
+  static StrWithLen Upper(
+    executor::ExecutorContext &ctx, const char *str, const uint32_t length);
+
+  // lower
+  static StrWithLen Lower(
+    executor::ExecutorContext &ctx, const char *str, const uint32_t length);
+
+  // concat
+  static StrWithLen Concat(
+    executor::ExecutorContext &ctx, const char **concat_strs, const uint32_t* strs_length, const uint32_t str_num);
+
+
   // Substring
   static StrWithLen Substr(executor::ExecutorContext &ctx, const char *str,
                            uint32_t str_length, int32_t from, int32_t len);

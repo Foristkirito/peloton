@@ -970,6 +970,18 @@ void Catalog::InitializeFunctions() {
                                     function::OldEngineStringFunctions::Concat},
           txn);
       AddBuiltinFunction(
+          "upper", {type::TypeId::VARCHAR},
+          type::TypeId::VARCHAR, internal_lang, "Upper",
+          function::BuiltInFuncType{OperatorId::Upper,
+                                    function::OldEngineStringFunctions::Upper},
+          txn);
+      AddBuiltinFunction(
+          "lower", {type::TypeId::VARCHAR},
+          type::TypeId::VARCHAR, internal_lang, "Lower",
+          function::BuiltInFuncType{OperatorId::Lower,
+                                    function::OldEngineStringFunctions::Lower},
+          txn);
+      AddBuiltinFunction(
           "substr",
           {type::TypeId::VARCHAR, type::TypeId::INTEGER, type::TypeId::INTEGER},
           type::TypeId::VARCHAR, internal_lang, "Substr",

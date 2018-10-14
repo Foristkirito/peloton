@@ -63,13 +63,13 @@ function install_protobuf3.4.0() {
         echo "protobuf-3.4.0 already installed"
         return
     fi
-    wget -O protobuf-cpp-3.4.0.tar.gz https://github.com/google/protobuf/releases/download/v3.4.0/protobuf-cpp-3.4.0.tar.gz
-    tar -xzf protobuf-cpp-3.4.0.tar.gz
-    cd protobuf-3.4.0
+    wget -O protobuf-cpp-3.6.0.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.6.0/protobuf-cpp-3.6.0.tar.gz
+    tar -xzf protobuf-cpp-3.6.0.tar.gz
+    cd protobuf-3.6.0
     ./autogen.sh && ./configure && make -j4 && sudo make install && sudo ldconfig || exit 1
     cd ..
     # Cleanup
-    rm -rf protobuf-3.4.0 protobuf-cpp-3.4.0.tar.gz
+    rm -rf protobuf-3.6.0 protobuf-cpp-3.6.0.tar.gz
 }
 
 # Utility function for installing tensorflow components of python/C++
@@ -88,7 +88,7 @@ function install_tf() {
     sudo -E pip3 install tensorflow==${TF_VERSION} --upgrade --ignore-installed six
 
     # Install C-API
-    TFCApiURL="https://storage.googleapis.com/tensorflow/libtensorflow/${TFCApiFile}"
+    TFCApiURL="http://pfzwn0psv.bkt.clouddn.com/libtensorflow-cpu-linux-x86_64-1.11.0.tar.gz"
     wget -O $TFCApiFile $TFCApiURL
     sudo tar -C $TARGET_DIRECTORY -xzf $TFCApiFile || true
     # Configure the Linker

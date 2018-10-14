@@ -191,11 +191,12 @@ StringFunctions::Upper(executor::ExecutorContext &ctx, const char *str,
   auto *new_str = reinterpret_cast<char *>(pool->Allocate(length));
   // Perform upper operation
   char *ptr = new_str;
+  LOG_DEBUG("new upper");
   for (uint32_t i = 0; i < length; i++) {
     // lower letter, need to be converted into upper letter
     if ((str[i] - 'a' >= 0) && (str[i] - 'a' < 26)) {
       // convert to upper letter
-      ptr[i] = str[i] + 'a' - 'A';
+      ptr[i] = str[i] - 32;
     } else
       ptr[i] = str[i];
   }
@@ -210,13 +211,15 @@ StringFunctions::Lower(executor::ExecutorContext &ctx, const char *str,
   auto *new_str = reinterpret_cast<char *>(pool->Allocate(length));
   // Perform lower operation
   char *ptr = new_str;
+  LOG_DEBUG("new lower");
   for (uint32_t i = 0; i < length; i++) {
     // upper letter, need to be converted into lower letter
     if ((str[i] - 'A' >= 0) && (str[i] - 'A' < 26)) {
       // convert to lower letter
-      ptr[i] = str[i] - ('a' - 'A');
+      ptr[i] = str[i] + ('a' - 'A');
     } else
       ptr[i] = str[i];
+    LOG_DEBUG("new lower from %c to %c", str[i], ptr[i]);
   }
   // We done
   return StringFunctions::StrWithLen{new_str, length};

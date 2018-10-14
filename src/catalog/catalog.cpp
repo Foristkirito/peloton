@@ -968,20 +968,22 @@ void Catalog::InitializeFunctions() {
           "concat", {type::TypeId::VARCHAR, type::TypeId::VARCHAR},
           type::TypeId::VARCHAR, internal_lang, "Concat",
           function::BuiltInFuncType{OperatorId::Concat,
-                                    function::StringFunctions::Concat},
+                                    function::OldEngineStringFunctions::Concat},
           txn);
+
       AddBuiltinFunction(
           "upper", {type::TypeId::VARCHAR},
           type::TypeId::VARCHAR, internal_lang, "Upper",
           function::BuiltInFuncType{OperatorId::Upper,
-                                    function::StringFunctions::Upper},
+                                    function::OldEngineStringFunctions::Upper},
           txn);
       AddBuiltinFunction(
           "lower", {type::TypeId::VARCHAR},
           type::TypeId::VARCHAR, internal_lang, "Lower",
           function::BuiltInFuncType{OperatorId::Lower,
-                                    function::StringFunctions::Lower},
+                                    function::OldEngineStringFunctions::Lower},
           txn);
+
       AddBuiltinFunction(
           "substr",
           {type::TypeId::VARCHAR, type::TypeId::INTEGER, type::TypeId::INTEGER},
@@ -1097,28 +1099,28 @@ void Catalog::InitializeFunctions() {
        * integer functions
        */
       AddBuiltinFunction(
-          "abs", {type::TypeId::TINYINT}, type::TypeId::TINYINT, 
+          "abs", {type::TypeId::TINYINT}, type::TypeId::TINYINT,
           internal_lang, "Abs",
           function::BuiltInFuncType{OperatorId::Abs,
                                     function::DecimalFunctions::_Abs},
           txn);
 
       AddBuiltinFunction(
-          "abs", {type::TypeId::SMALLINT}, type::TypeId::SMALLINT, 
+          "abs", {type::TypeId::SMALLINT}, type::TypeId::SMALLINT,
           internal_lang, "Abs",
           function::BuiltInFuncType{OperatorId::Abs,
                                     function::DecimalFunctions::_Abs},
           txn);
 
       AddBuiltinFunction(
-          "abs", {type::TypeId::INTEGER}, type::TypeId::INTEGER, 
+          "abs", {type::TypeId::INTEGER}, type::TypeId::INTEGER,
           internal_lang, "Abs",
           function::BuiltInFuncType{OperatorId::Abs,
                                     function::DecimalFunctions::_Abs},
           txn);
 
       AddBuiltinFunction(
-          "abs", {type::TypeId::BIGINT}, type::TypeId::BIGINT, 
+          "abs", {type::TypeId::BIGINT}, type::TypeId::BIGINT,
           internal_lang, "Abs",
           function::BuiltInFuncType{OperatorId::Abs,
                                     function::DecimalFunctions::_Abs},

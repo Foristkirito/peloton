@@ -228,12 +228,15 @@ type::Value OldEngineStringFunctions::Length(
 
 type::Value OldEngineStringFunctions::Upper(
     UNUSED_ATTRIBUTE const std::vector<type::Value> &args) {
-  throw Exception{"Upper not implemented in old engine"};
+  //throw Exception{"Upper not implemented in old engine"};
+  LOG_DEBUG("useing old engine upper function");
+  return type::ValueFactory::GetVarcharValue(args[0].ToString());
 }
 
 type::Value OldEngineStringFunctions::Lower(
     UNUSED_ATTRIBUTE const std::vector<type::Value> &args) {
-  throw Exception{"Lower not implemented in old engine"};
+  LOG_DEBUG("useing old engine lower function");
+  return type::ValueFactory::GetVarcharValue(args[0].ToString());
 }
 
 }  // namespace function

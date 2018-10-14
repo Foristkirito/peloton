@@ -234,7 +234,7 @@ StringFunctions::StrWithLen StringFunctions::Upper(
   char *ptr = new_str;
   for (uint32_t i = 0; i < str_num; i++) {
     // memcpy each string to new string
-    PELOTON_MEMCPY(ptr, concat_strs[i], strs_length[i] - 1);
+    PL_MEMCPY(ptr, concat_strs[i], strs_length[i] - 1);
   }
    // We done
   return StringFunctions::StrWithLen{new_str, total_length};

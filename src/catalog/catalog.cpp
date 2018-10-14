@@ -1990,6 +1990,24 @@ void Catalog::InitializeFunctions() {
                          {type::TypeId::VARCHAR},
                          internal_lang);
       AddBuiltinFunction(txn,
+                         "upper",
+                         function::BuiltInFuncType{
+                             OperatorId::Upper,
+                             function::OldEngineStringFunctions::Upper},
+                         "Upper",
+                         type::TypeId::VARCHAR,
+                         {type::TypeId::VARCHAR},
+                         internal_lang);
+      AddBuiltinFunction(txn,
+                         "lower",
+                         function::BuiltInFuncType{
+                             OperatorId::Lower,
+                             function::OldEngineStringFunctions::Lower},
+                         "Lower",
+                         type::TypeId::VARCHAR,
+                         {type::TypeId::VARCHAR},
+                         internal_lang);
+      AddBuiltinFunction(txn,
                          "octet_length",
                          function::BuiltInFuncType{
                              OperatorId::OctetLength,

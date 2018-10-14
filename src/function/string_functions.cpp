@@ -137,6 +137,75 @@ StringFunctions::StrWithLen StringFunctions::Repeat(
   return StringFunctions::StrWithLen{new_str, total_len};
 }
 
+StringFunctions::StrWithLen StringFunctions::Upper(
+    executor::ExecutorContext &ctx, const char *str, const uint32_t length) {
+
+  // Allocate new memory
+  auto *pool = ctx.GetPool();
+  auto *new_str = reinterpret_cast<char *>(pool->Allocate(length));
+
+  // Perform upper operation
+  char *ptr = new_str;
+  for (uint32_t i = 0; i < length; i++) {
+    // lower letter, need to be converted into upper letter
+    if ((str[i] - 'a' >= 0 ) && (str[i] - 'a' < 26)) {
+      // convert to upper letter
+      ptr[i] = str[i] + 'a' - 'A';
+    } else
+      ptr[i] = str[i];
+  }
+
+  // We done
+  return StringFunctions::StrWithLen{new_str, length};
+}
+
+StringFunctions::StrWithLen StringFunctions::Lower(
+    executor::ExecutorContext &ctx, const char *str, const uint32_t length) {
+
+  // Allocate new memory
+  auto *pool = ctx.GetPool();
+  auto *new_str = reinterpret_cast<char *>(pool->Allocate(length));
+
+  // Perform lower operation
+  char *ptr = new_str;
+  for (uint32_t i = 0; i < length; i++) {
+    // upper letter, need to be converted into lower letter
+    if ((str[i] - 'A' >= 0 ) && (str[i] - 'A' < 26)) {
+      // convert to lower letter
+      ptr[i] = str[i] - ('a' - 'A');
+    } else
+      ptr[i] = str[i];
+  }
+
+  // We done
+  return StringFunctions::StrWithLen{new_str, length};
+}
+
+StringFunctions::StrWithLen StringFunctions::Concat(
+    executor::ExecutorContext &ctx, const char **concat_strs, const uint32_t* strs_length, const uint32_t str_num) {
+
+  // get total string length
+  uint32_t total_length = 0;
+  for (uint32_t i = 0; i < str_num; i++) {
+    total_length += strs_length[i] - 1;
+  }
+  total_length++;
+
+  // Allocate new memory
+  auto *pool = ctx.GetPool();
+  auto *new_str = reinterpret_cast<char *>(pool->Allocate(total_length));
+
+  // Perform concat operation
+  char *ptr = new_str;
+  for (uint32_t i = 0; i < str_num; i++) {
+    // memcpy each string to new string
+    PELOTON_MEMCPY(ptr, concat_strs[i], strs_length[i] - 1);
+  }
+
+  // We done
+  return StringFunctions::StrWithLen{new_str, total_length};
+}
+
 StringFunctions::StrWithLen StringFunctions::LTrim(
     UNUSED_ATTRIBUTE executor::ExecutorContext &ctx, const char *str,
     uint32_t str_len, const char *from, UNUSED_ATTRIBUTE uint32_t from_len) {

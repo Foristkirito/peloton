@@ -1115,6 +1115,8 @@ enum class OperatorId : uint32_t {
   DateTrunc,
   Like,
   Now,
+  Upper,
+  Lower,
 
   // Add more operators here, before the last "Invalid" entry
   Invalid

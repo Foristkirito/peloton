@@ -353,7 +353,7 @@ struct Lower : public TypeSystem::UnaryOperatorHandleNull {
              const TypeSystem::InvocationContext &ctx) const override {
     llvm::Value *executor_ctx = ctx.executor_context;
     llvm::Value *ret =
-        codegen.Call(StringFunctionsProxy::Upper,
+        codegen.Call(StringFunctionsProxy::Lower,
                      {executor_ctx, val.GetValue(), val.GetLength()});
     llvm::Value *str_ptr = codegen->CreateExtractValue(ret, 0);
     llvm::Value *str_len = codegen->CreateExtractValue(ret, 1);
